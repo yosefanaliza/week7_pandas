@@ -21,7 +21,7 @@ def load_json_data(filepath):
     return df
 
 
-def convert_data_types(df):
+def convert_data_types(df: pd.DataFrame):
     """
     Convert columns to appropriate data types with cleaning.
     
@@ -37,11 +37,11 @@ def convert_data_types(df):
     # Convert total_amount: remove $ and convert to float
     df_copy['total_amount'] = df_copy['total_amount'].str.replace('$', '', regex=False).astype(float)
     
-    # Convert shipping_days to int
-    df_copy['shipping_days'] = df_copy['shipping_days'].astype(int)
+    # # Convert shipping_days to int
+    # df_copy['shipping_days'] = df_copy['shipping_days'].astype(int)
     
-    # Convert customer_age to int
-    df_copy['customer_age'] = df_copy['customer_age'].astype(int)
+    # # Convert customer_age to int
+    # df_copy['customer_age'] = df_copy['customer_age'].astype(int)
     
     # Convert rating to float
     df_copy['rating'] = df_copy['rating'].astype(float)
@@ -52,7 +52,7 @@ def convert_data_types(df):
     return df_copy
 
 
-def remove_html_tags(text):
+def remove_html_tags(text: str):
     """
     Remove HTML tags from text while preserving spaces between words.
     
@@ -158,6 +158,7 @@ def add_average_rating_by_country(df):
     """
     df_copy = df.copy()
     avg_rating_by_country = df_copy.groupby('country')['rating'].transform('mean')
+    
     df_copy['average_rating_by_country'] = avg_rating_by_country
     return df_copy
 
